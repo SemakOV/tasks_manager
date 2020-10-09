@@ -1,0 +1,14 @@
+{% extends 'general/base.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+  {% if request.user.is_authenticated %}
+      <h1>Добро пожаловать {{ user.username }}!</h1>
+      {{ user.id }}
+      <p>Просмотрите список своих задач или создайте новую</p>
+  {% else %}
+    <h1>Менеджер задач</h1>
+    <p>Зарегистрируйтесь или войдите в систему</p>
+  {% endif %}
+{% endblock %}

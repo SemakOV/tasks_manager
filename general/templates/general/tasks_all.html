@@ -1,0 +1,35 @@
+{% extends 'general/base.html' %}
+
+{% block title %}Задачи{% endblock %}
+
+{% block content %}
+  <h1>Задачи</h1>
+    {% if tasks %}
+      <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Название</th>
+          <th scope="col">Описание</th>
+          <th scope="col">Время создания</th>
+          <th scope="col">Статус</th>
+          <th scope="col">Дата завершения</th>
+        </tr>
+      </thead>
+      <tbody>
+          {% for elements in tasks %}
+          <tr>
+          <th scope="row">{{ elements.id }}</th>
+          <td>{{ elements.title }}</td>
+          <td>{{ elements.description }}</td>
+          <td>{{ elements.time_create }}</td>
+          <td>{{ elements.state }}</td>
+          <td>{{ elements.time_out }}</td>
+              <td>{{ elements.author }}</td>
+          </tr>
+          {% endfor %}
+    {% else %}
+      <p>Нет задач</p>
+    {% endif %}
+  </tbody>
+{% endblock %}
