@@ -3,11 +3,13 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib import messages
 from .forms import UserRegisterForm
 from django.contrib.auth import login, logout
+from django.contrib.auth.models import User
 
 
 def user_logout(request):
      logout(request)
      return redirect('auth_user')
+
 
 def auth(request):
      if request.method == 'POST':
@@ -28,7 +30,7 @@ def registration(request):
           if form.is_valid():
                user = form.save()
                login(request, user)
-               messages.success(request, "Вы зарегистрированы")
+               # messages.success(request, "Вы зарегистрированы")
                return redirect('home')
 
      form = UserRegisterForm()

@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+from . import _vlenv_value
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ***
+SECRET_KEY = _vlenv_value.KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -40,9 +40,9 @@ INSTALLED_APPS = [
 
     'general',
     'auth_app',
-    'rest_framework',
-    'djoser',
-    'rest_framework.authtoken',
+    # 'rest_framework',
+    # 'djoser',
+    # 'rest_framework.authtoken'
 
 ]
 
@@ -84,8 +84,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'django_db_test',
-        'USER': ***,
-        'PASSWORD': ***,
+        'USER': _vlenv_value.DATA_VALUE['USER'],
+        'PASSWORD': _vlenv_value.DATA_VALUE['PASSWORD'],
         'HOST': 'localhost',
         'PORT': '5432'
     }

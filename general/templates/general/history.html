@@ -19,7 +19,7 @@
     </thead>
     <tbody>
     {% for elements in tasks %}
-    {% if user.is_superuser == True or elements.author.pk == user_pk and elements.state != 'Завершённая' %}
+    {% if user.is_superuser == True or elements.author.pk == user_pk and elements.state == 'Завершённая' %}
     <tr>
         <th scope="row">{{ elements.id }}</th>
         <td>{{ elements.title }}</td>

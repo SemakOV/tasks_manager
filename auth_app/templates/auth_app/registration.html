@@ -1,21 +1,20 @@
 {% extends 'general/base.html' %}
-{% block title %}Регистрация{% endblock %}
-
+{% block title %} Регистрация {% endblock %}
 <!--    {% if massages %}-->
 <!--      {% for message in messages %}-->
 <!--      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>-->
 <!--      {% endfor %}-->
 <!--    {% endif %}-->
-<!--{% block content %}-->
-<div>
-      <h1 class="h3 mb-3 font-weight-normal">Регистрация</h1>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
+<!--  {% block content %}-->
+<h1 class="h3 mb-3 font-weight-normal">Регистрация</h1>
+<form method="post">
+  {% csrf_token %}
+      {{ form.as_p }}
+<!--  <input type="text" class="form-control" placeholder="Login" required>-->
 <!--  <input type="email" class="form-control" placeholder="Email" required autofocus>-->
 <!--  <input type="password" class="form-control" placeholder="Password" required>-->
-<!--  <input type="text" class="form-control" placeholder="Login" required>-->
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Зарегистрироваться</button>
-  </form>
-</div>
-{% endblock %}
+<!--  <input type="password" placeholder="Repeat Password" class="form-control" required>-->
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Зарегистрироваться</button>
+</form>
+
+<!--{% endblock %}-->
