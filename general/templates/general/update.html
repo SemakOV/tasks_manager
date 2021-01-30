@@ -1,5 +1,5 @@
 {% extends 'general/base.html' %}
-{% block title %}Создать задачу{% endblock %}
+{% block title %}Изменить задачу{% endblock %}
 
 
 {% block content %}
@@ -8,11 +8,11 @@
     {% csrf_token %}
     {{ form.title }}<br>
     {{ form.description }}<br>
-<!--    <p>{{ form.author }}</p><br>-->
+    <!--    <p>{{ form.author }}</p><br>-->
     <p>Статус: {{ form.state }}</p><br>
     <p>Дата выполнения: {{ form.time_out }}</p>
     <div>
-     <button type="submit">Изменить</button><br> <button type="reset">Отмена</button><br>
+        <button type="submit">Изменить</button><br> <button type="reset">Отмена</button><br>
     </div>
 </form>
 {% endblock %}
