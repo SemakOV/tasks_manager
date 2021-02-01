@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.views.generic import ListView, CreateView
 from django.views.generic.edit import UpdateView
 from django.http import HttpResponse
+from .filter import FilterTasksState
 
 
 def index(request):
@@ -50,6 +51,7 @@ class TasksAll(ListView):
         context = super(TasksAll, self).get_context_data(**kwargs)
         context['title'] = 'Задачи'
         context['user_pk'] = self.request.user.pk
+        context['filter'] = FilterTasksState(self.request.GET, queryset=self.get_queryset())
         return context
 
 # def tasks_all(request):
@@ -61,6 +63,45 @@ class HistoryTasks(TasksAll):
     model = Task
     template_name = 'general/history.html'
     context_object_name = 'tasks'
+
+
+class FilterTasks(TasksAll):
+    model = Task
+    template_name = 'general/filter.html'
+    context_object_name = 'tasks'
+
+
+class FilterState(TasksAll):
+    model = Task
+    template_name = 'general/filter.html'
+    context_object_name = 'tasks'
+
+    def get_context_data(self, **kwargs):
+        context = super(TasksAll, self).get_context_data(**kwargs)
+        context['filter'] = FilterTasksState(self.request.GET, queryset=self.get_queryset())
+        return context
+
+
+
+
+
+
+
+# class FilterTasksState(django_filters.FilterSet):
+#     class Meta:
+#         model = Task
+#         fields = ('state', )
+
+    #
+    # queryset = Task.objects.all()
+    # model = Task
+    # template_name = 'general/filter.html'
+    # context_object_name = 'tasks'
+    # filter_backends = [DjangoFilterBackend]
+
+
+
+
 
 
 # Create your views here.

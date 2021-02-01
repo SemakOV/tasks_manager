@@ -4,6 +4,15 @@
 
 {% block content %}
 <h1>Задачи</h1>
+<div class="container">
+    <form action="/filter/">
+        <button type="submit">Сортировать по дате</button>
+    </form>
+    <form method="GET" action="/filter/">
+         {{ filter.form }}
+        <button type="submit">Фильтр</button>
+    </form>
+
 {% if tasks %}
 <table class="table">
     <thead>
@@ -14,20 +23,20 @@
         <th scope="col">Время создания</th>
         <th scope="col">Статус</th>
         <th scope="col">Дата завершения</th>
-        <th scope="col">Автор</th>
+<!--        <th scope="col">Автор</th>-->
     </tr>
     </thead>
     <tbody>
     {% for elements in tasks %}
     {% if user.is_superuser == True or elements.author.pk == user_pk and elements.state != 'Завершённая' %}
     <tr>
-        <th scope="row">{{ elements.id }}</th>
+        <th scope="row">{{ forloop.counter }}</th>
         <td>{{ elements.title }}</td>
         <td>{{ elements.description }}</td>
         <td>{{ elements.time_create }}</td>
         <td>{{ elements.state }}</td>
         <td>{{ elements.time_out }}</td>
-        <td>{{ elements.author.pk}}</td>
+<!--        <td>{{ elements.author.pk}}</td>-->
         <td><a href="{{ elements.id }}/update/">Изменить</a></td>
     </tr>
     {% endif %}
@@ -39,4 +48,6 @@
     <form action="/history/">
         <button type="submit">История Задач</button>
     </form>
-    {% endblock %}
+
+
+    {% endblock%}

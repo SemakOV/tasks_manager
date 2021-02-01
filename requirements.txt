@@ -5,3 +5,7 @@ djangorestframework==3.12.1
 djoser==2.0.5
 pytz==2020.1
 sqlparse==0.3.1
+urllib3==1.25.10
+requests==2.24.0
+django-filter==2.4.0
+

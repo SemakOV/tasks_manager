@@ -1,0 +1,52 @@
+{% extends 'general/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<h1>Задачи</h1>
+<div class="container">
+    <form action="/filter/">
+        <button type="submit">Сортировать по дате</button>
+    </form>
+    <form method="GET">
+        {{ filter.form }}
+        <button type="submit">Фильтр</button>
+    </form>
+    {% if filter %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Название</th>
+            <th scope="col">Описание</th>
+            <th scope="col">Время создания</th>
+            <th scope="col">Статус</th>
+            <th scope="col">Дата завершения</th>
+            <!--        <th scope="col">Автор</th>-->
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for elements in filter.qs|dictsort:'time_out' %}
+        {% if user.is_superuser == True or elements.author.pk == user_pk and elements.state != 'Завершённая' %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ elements.title }}</td>
+            <td>{{ elements.description }}</td>
+            <td>{{ elements.time_create }}</td>
+            <td>{{ elements.state }}</td>
+            <td>{{ elements.time_out }}</td>
+            <!--        <td>{{ elements.author.pk}}</td>-->
+            <td><a href="{{ elements.id }}/update/">Изменить</a></td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        {% else %}
+        <p>Нет задач</p>1
+        {% endif %}
+        </tbody>
+        <form action="/history/">
+            <button type="submit">История Задач</button>
+        </form>
+</div>
+{% endblock %}
